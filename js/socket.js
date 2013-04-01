@@ -16,6 +16,7 @@ function socketConnection(url)
 		/* Initial all the events that associate with the WebSocket instance. */
 		webSocket.onopen = function() { onOpen(); }; 
 		webSocket.onclose = function() { onClose(); };
+		//webSocket.onclose = function() {};
 		webSocket.onmessage = function(evt) { onMessage(evt); };
 		webSocket.onerror = function() { onError(); }; 
 	}
@@ -42,7 +43,10 @@ function onError()
 function onMessage(evt) 
 { 
 	/* currently we just write the received message to console box */
-	writeText("console", evt.data);
+	/* writeText("console", evt.data); */
+	writeText("span-x-value", evt.data); 
+	writeText("span-y-value", evt.data); 
+	writeText("span-z-value", evt.data); 
 }  
 
 /**
@@ -88,9 +92,12 @@ function writeText(id, message)
  */
 $(document).ready(function(){
 	
-	//init();
-	var wsUri = "ws://node.remysharp.com:8001"; 
-	socketConnection(wsUri);
+	$("#connect-button").click(function () {
+		var wsUri = "ws://node.remysharp.com:8001"; 
+		socketConnection(wsUri);
+	    });
 	
-	
+	$("#stop-button").click(function () {
+		webSocket.close();
+	    });
 });
