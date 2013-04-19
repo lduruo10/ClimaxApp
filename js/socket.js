@@ -93,7 +93,7 @@ function writeText(id, message)
 $(document).ready(function(){
 	
 	$("#connect-button").click(function () {
-		var wsUri = "ws://192.168.1.22"; 
+		var wsUri = "ws://192.168.1.22:9750"; 
 		socketConnection(wsUri);
 	    });
 	
